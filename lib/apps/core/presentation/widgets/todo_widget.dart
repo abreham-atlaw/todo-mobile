@@ -17,42 +17,42 @@ class TodoWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ColorsConfigs.white,
-        borderRadius: BorderRadius.circular(SpacingConfigs.spacing3)
-      ),
-      padding: const EdgeInsets.all(SpacingConfigs.spacing3),
-      child: Row(
-        children: [
-          GestureDetector(
-              onTap:  onCheck,
-              child: CircleCheck(isChecked: todo.isComplete)
-          ),
-          const SizedBox(width: SpacingConfigs.spacing3,),
-          Expanded(
-            child: Link(
-              to: "/core/todo/edit",
-              extra: todo.getPK()!,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BodyText(
-                    todo.title,
-                    color: (todo.isComplete) ? ColorsConfigs.grey : ColorsConfigs.dark,
-                    decoration: (todo.isComplete) ? TextDecoration.lineThrough : TextDecoration.none,
-                  ),
-                  BodyText(
-                    todo.category!.name,
-                    color: ColorsConfigs.primary,
-                    fontSize: FontSizeConfigs.size0,
-                    fontWeight: FontWeight.bold,
-                  )
-                ],
-              ),
+    return Link(
+      to: "/core/todo/edit",
+      extra: todo.getPK()!,
+      child: Container(
+        decoration: BoxDecoration(
+          color: ColorsConfigs.white,
+          borderRadius: BorderRadius.circular(SpacingConfigs.spacing3)
+        ),
+        padding: const EdgeInsets.all(SpacingConfigs.spacing3),
+        child: Row(
+          children: [
+            GestureDetector(
+                onTap:  onCheck,
+                child: CircleCheck(isChecked: todo.isComplete)
             ),
-          )
-        ],
+            const SizedBox(
+              width: SpacingConfigs.spacing2,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BodyText(
+                  todo.title,
+                  color: (todo.isComplete) ? ColorsConfigs.grey : ColorsConfigs.dark,
+                  decoration: (todo.isComplete) ? TextDecoration.lineThrough : TextDecoration.none,
+                ),
+                BodyText(
+                  todo.category!.name,
+                  color: ColorsConfigs.primary,
+                  fontSize: FontSizeConfigs.size0,
+                  fontWeight: FontWeight.bold,
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

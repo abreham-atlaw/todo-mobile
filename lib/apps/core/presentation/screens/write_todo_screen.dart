@@ -15,6 +15,7 @@ import 'package:todo/common/widgets/forms/text_field_widget.dart';
 import 'package:todo/common/widgets/navigation/link.dart';
 import 'package:todo/common/widgets/screens/bloc_screen.dart';
 import 'package:todo/common/widgets/text/body.dart';
+import 'package:todo/common/widgets/text/errors.dart';
 import 'package:todo/common/widgets/text/headers.dart';
 import 'package:todo/configs/ui_configs.dart';
 
@@ -32,7 +33,7 @@ class WriteTodoScreen extends AsyncBlocScreen<WriteTodoBloc, WriteTodoState>{
 
   @override
   Widget onCreateMain(BuildContext context, WriteTodoState state) {
-    if(state.asyncStatus == AsyncStatus.done){
+    if(state.asyncStatus == AsyncStatus.done || state.deleteState.asyncStatus == AsyncStatus.done){
       RoutingUtils.redirect("/core/home", context);
     }
     return SingleChildScrollView(
@@ -57,6 +58,9 @@ class WriteTodoScreen extends AsyncBlocScreen<WriteTodoBloc, WriteTodoState>{
                     child: Heading3("${(todoId == null)?'Create':'Edit'} Task")),
               ],
             ),
+            const SizedBox(height: SpacingConfigs.spacing3,),
+            ErrorText(state.error?.message ?? ""),
+            ErrorText(state.deleteState.error?.message ?? ""),
             const SizedBox(height: SpacingConfigs.spacing5,),
             LabeledFormField(
               label: "Title",
@@ -116,7 +120,7 @@ class WriteTodoScreen extends AsyncBlocScreen<WriteTodoBloc, WriteTodoState>{
                   onPressed: (){
                     context.read<WriteTodoBloc>().add(DeleteTodoEvent());
                   },
-                  state: state,
+                  state: state.deleteState,
                   child: SizedBox(
                     width: WidgetSizeConfigs.size2,
                     child: BodyText(

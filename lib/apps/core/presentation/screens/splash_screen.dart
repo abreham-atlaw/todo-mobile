@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
     return AppScreen(
       child: AuthenticatedScreen(
           validStatuses: const [],
-          redirectMap: const {
+          redirectMap: const { // Redirect the user depending on the Authentication Status
             AuthenticationStatus.authenticated: "/core/home",
             AuthenticationStatus.none: "/auth/login"
           },

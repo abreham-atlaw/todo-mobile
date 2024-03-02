@@ -15,14 +15,6 @@ class TodoAppRouter extends GoRouter {
   TodoAppRouter()
       : super(routes: [
 
-
-      // ShellRoute(
-      //   builder: (context, state, child) => BaseScreen(child),
-      //     routes: [
-      //       GoRoute(path: "/", builder: (context, state) => ListTodosScreen())
-      //     ]
-      // ),
-
     GoRoute(path: "/", builder: (context, state) => SplashScreen(key: Key(DateTime.now().toIso8601String()))),
 
     GoRoute(path: "/auth/login", builder: (context, state) => const LoginScreen()),

@@ -28,6 +28,7 @@ class WriteTodoState extends AsyncState{
     newState.categories = categories;
     newState.todo = todo;
     newState.todoId = todoId;
+    newState.deleteState = deleteState;
   }
 
 }
