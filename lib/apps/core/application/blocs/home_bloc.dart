@@ -31,7 +31,7 @@ class HomeBloc extends AsyncBloc<HomeState>{
     await _getCounts();
   }
 
-  _getCounts() async{
+  _getCounts() async{ // A function that gets the stats(number of tasks and number of completed tasks in each category)
     for(Category category in state.categories!){
       final tasks = await _todoRepository.filterByCategory(category);
       state.categoriesTasksCount![category] = tasks.length;
@@ -39,7 +39,7 @@ class HomeBloc extends AsyncBloc<HomeState>{
     }
   }
 
-  initializeUser() async{
+  initializeUser() async{ // Checks if user has no categories(if it's a new user) and creates the default categories
     final categories = await _categoryRepository.getAll();
     if(categories.isEmpty){
       for(String categoryName in ["Personal", "Business", "Work", "School"]){

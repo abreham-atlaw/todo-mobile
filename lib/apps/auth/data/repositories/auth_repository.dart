@@ -8,7 +8,6 @@ import 'package:todo/di/core_providers.dart';
 
 class AuthRepository{
 
-  final _client = CoreProviders.provideAppWriteClient();
   final _account = CoreProviders.provideAccount();
 
   String _generateUID(){
@@ -40,7 +39,7 @@ class AuthRepository{
     } catch(ex){
       if(ex is AppwriteException){
         if(ex.code == 401){
-          return AuthenticationStatus.none; //TODO
+          return AuthenticationStatus.none;
         }
       }
       rethrow;

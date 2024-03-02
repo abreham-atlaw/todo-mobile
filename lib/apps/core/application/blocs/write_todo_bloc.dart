@@ -9,6 +9,8 @@ import 'package:todo/apps/core/data/repositories/category_repository.dart';
 import 'package:todo/apps/core/data/repositories/todo_repository.dart';
 import 'package:todo/common/async_bloc/async_bloc.dart';
 
+
+// This bloc handles both edit and create Todo.
 class WriteTodoBloc extends AsyncBloc<WriteTodoState>{
 
   final _repository = TodoRepository();
@@ -24,7 +26,7 @@ class WriteTodoBloc extends AsyncBloc<WriteTodoState>{
     await super.onInit();
     state.initStatus;
     state.categories = await _categoryRepository.getAll();
-    if(state.todoId != null){
+    if(state.todoId != null){ // If state.todoId is not null it means it in edit mode rather that create mode
       state.todo = await _repository.getById(state.todoId!);
       _mapInstanceToForm(state.todo!, state.form);
     }

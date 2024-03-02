@@ -8,7 +8,7 @@ import 'package:todo/common/async_bloc/base_state.dart';
 
 class WriteTodoState extends AsyncState{
 
-  String? todoId;
+  String? todoId; // Only available in edit mode(editing a task). Is null when creating new Task
   Todo? todo;
   var form = TodoForm();
   List<Category>? categories;
