@@ -23,7 +23,13 @@ class SignupForm extends Form {
         }
       }
   );
-  Field<String> password = TextField();
+  Field<String> password = TextField(
+    validator: (String value) async{
+      if(value.length < 8){
+        throw ValidationException("Password should at least be 8 characters long");
+      }
+    }
+  );
   Field<String> confirmPassword = TextField();
 
   @override

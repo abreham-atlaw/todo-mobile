@@ -24,9 +24,7 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
   void initState() {
     super.initState();
     _selectedCategory = widget.initialCategory;
-    // if (widget.categories.isNotEmpty) {
-    //   _selectedCategory = widget.categories[0];
-    // }
+
   }
 
   @override
